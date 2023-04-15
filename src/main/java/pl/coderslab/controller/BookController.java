@@ -7,7 +7,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import pl.coderslab.dao.BookDao;
+import pl.coderslab.dao.PublisherDao;
 import pl.coderslab.model.Book;
+import pl.coderslab.model.Publisher;
+
+import java.util.Random;
 
 @Transactional
 @RestController
@@ -16,13 +20,21 @@ import pl.coderslab.model.Book;
 public class BookController {
 
     private final BookDao bookDao;
+    private final PublisherDao publisherDao;
 
     @GetMapping("add")
     public String addBook() {
+        // add publisher
+        Publisher publisher = new Publisher();
+        publisher.setName("pub_" + new Random().nextInt());
+        publisherDao.save(publisher);
+
         Book book = new Book();
         book.setTitle("Title 1");
         book.setDescription("Description 1");
         book.setRating(3);
+        book.setPublisher(publisher); // ustawiamy wydawcę
+
         bookDao.saveBook(book);
 
         return "book id is " + book.getId();
