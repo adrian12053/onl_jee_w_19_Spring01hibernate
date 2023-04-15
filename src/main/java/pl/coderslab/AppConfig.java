@@ -27,6 +27,7 @@ public class AppConfig implements WebMvcConfigurer {
         entityManagerFactoryBean.setPersistenceUnitName("bookstorePersistenceUnit");
         return entityManagerFactoryBean;
     }
+
     @Bean
     public JpaTransactionManager transactionManager(EntityManagerFactory entityManagerFactory) {
         JpaTransactionManager jpaTransactionManager =
