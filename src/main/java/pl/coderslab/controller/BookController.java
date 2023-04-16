@@ -1,10 +1,12 @@
 package pl.coderslab.controller;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import pl.coderslab.dao.BookDao;
 import pl.coderslab.dao.PublisherDao;
@@ -13,6 +15,7 @@ import pl.coderslab.model.Publisher;
 
 import java.util.Random;
 
+@Slf4j
 @Transactional
 @RestController
 @RequiredArgsConstructor
@@ -60,4 +63,11 @@ public class BookController {
         bookDao.delete(book);
         return "deleted";
     }
+
+    @GetMapping("/all")
+    @ResponseBody  // optional since we use @RestController
+    public void getAllBooks() {
+        bookDao.findAll().forEach(b -> log.info(b.toString()));
+    }
+
 }
