@@ -32,10 +32,18 @@ public class BookFormController {
     }
 
     @PostMapping
-    @ResponseBody
-    public void handleAddBookForm(@ModelAttribute("book") Book book) {
+    public String handleAddBookForm(@ModelAttribute("book") Book book) {
         log.info("Adding new book - {}", book);
         bookDao.saveBook(book);
+        return "redirect:/bookForm/all";
+    }
+
+
+    @GetMapping("all")
+    public String showAllBooks(Model model) {
+        model.addAttribute("books", bookDao.findAll());
+
+        return "bookForm-list";
     }
 
     @ModelAttribute("publishers")

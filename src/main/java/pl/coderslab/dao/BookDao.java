@@ -34,7 +34,7 @@ public class BookDao {
     }
 
     public List<Book> findAll() {
-        return entityManager.createQuery("SELECT b FROM Book b")
+        return entityManager.createQuery("SELECT b FROM Book b LEFT JOIN FETCH b.authors")
                 .getResultList();
     }
 
