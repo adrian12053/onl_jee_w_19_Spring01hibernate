@@ -6,6 +6,7 @@ import pl.coderslab.model.Publisher;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
+import java.util.List;
 
 @Repository
 @Transactional
@@ -28,5 +29,10 @@ public class PublisherDao {
 
     public void delete(Publisher entity) {
         entityManager.remove(entityManager.contains(entity) ? entity : entityManager.merge(entity));
+    }
+
+    public List<Publisher> findAll() {
+        return entityManager.createQuery("SELECT p FROM Publisher p")
+                .getResultList();
     }
 }
