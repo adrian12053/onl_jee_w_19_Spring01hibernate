@@ -10,12 +10,19 @@
 <html>
 <head>
     <title>Add new book</title>
+    <style>
+        error {
+
+        }
+    </style>
 </head>
 <body>
 
 <form:form action="/bookForm" method="POST" modelAttribute="book">
     <label for="title">Title</label>
-    <form:input path="title" id="title"/></br>
+    <form:input path="title" id="title"/>
+    <form:errors path="title"/>
+    </br>
 
     <label for="rating">Rating</label>
     <form:input path="rating" type="number" id="rating"/></br>
@@ -30,6 +37,9 @@
                  itemValue="id"
                  id="publishers"
     />
+
+    <br>
+    <form:errors path="*"/>
 
     <input type="submit">
 </form:form>
