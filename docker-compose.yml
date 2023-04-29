@@ -8,5 +8,5 @@ services:
       MYSQL_DATABASE: bookStore
     ports:
       - "3306:3306"
-    volumes:
-      - /Users/koszkuld/projects/private/hibernate/volumes/mysql:/var/lib/mysql
+#    volumes:
+#      - /Users/koszkuld/projects/private/hibernate/volumes/mysql:/var/lib/mysql
