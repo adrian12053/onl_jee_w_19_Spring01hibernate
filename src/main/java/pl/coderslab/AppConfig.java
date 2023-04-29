@@ -3,6 +3,7 @@ package pl.coderslab;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalEntityManagerFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
@@ -23,6 +24,7 @@ import java.util.Locale;
 @EnableWebMvc
 @ComponentScan(basePackages = "pl.coderslab")
 @EnableTransactionManagement // do hibernate i JPA
+@EnableJpaRepositories(basePackages = "pl.coderslab.repository")
 public class AppConfig implements WebMvcConfigurer {
 
     @Bean

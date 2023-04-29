@@ -12,6 +12,7 @@ import pl.coderslab.dao.BookDao;
 import pl.coderslab.dao.PublisherDao;
 import pl.coderslab.model.Book;
 import pl.coderslab.model.Publisher;
+import pl.coderslab.repository.BookRepository;
 
 import java.util.Random;
 
@@ -24,6 +25,8 @@ public class BookController {
 
     private final BookDao bookDao;
     private final PublisherDao publisherDao;
+
+    private final BookRepository bookRepository;
 
     @GetMapping("add")
     public String addBook() {
@@ -67,7 +70,9 @@ public class BookController {
     @GetMapping("/all")
     @ResponseBody  // optional since we use @RestController
     public void getAllBooks() {
-        bookDao.findAll().forEach(b -> log.info(b.toString()));
+        bookRepository.findAll().forEach(b -> log.info(b.toString()));
+
+//        bookDao.findAll().forEach(b -> log.info(b.toString()));
     }
 
 }
