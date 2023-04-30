@@ -47,7 +47,6 @@ public class Book {
     @JoinColumn(name = "publisher_id")
     private Publisher publisher;
 
-
     @NotEmpty
     @ManyToMany
     @JoinTable(name = "books_authors",
@@ -57,6 +56,10 @@ public class Book {
 
     @Min(2)
     private int pages;
+
+    @ManyToOne
+    @JoinColumn(name = "category_id")
+    private Category category;
 }
 
 
